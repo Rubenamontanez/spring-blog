@@ -3,10 +3,7 @@ package com.codeup.springblog.Controllers;
 import com.codeup.springblog.Models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -25,9 +22,11 @@ public class PostController {
 
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String getPost(@PathVariable int id){
-        return "view an individual post" + id;
+    public String getPost(@PathVariable int id, Model model){
+        Post post1 = new Post((long) id, "Europa's First Post", "Remote Learning Today!");
+        model.addAttribute("title", post1.getTitle());
+        model.addAttribute("body", post1.getBody());
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
@@ -42,6 +41,11 @@ public class PostController {
         return "create a post";
     }
 
+    @RequestMapping(path="/post", method=RequestMethod.DELETE)
+    @ResponseBody
+    public String delete(){
+        return "Delete!";
+    }
 
 
 
