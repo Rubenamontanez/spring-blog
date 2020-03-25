@@ -1,5 +1,7 @@
 USE post_db;
 
+SELECT * FROM users;
+
 # CREATE USER post_user@localhost IDENTIFIED BY 'password';
 # GRANT ALL ON post_db.* TO post_user@localhost;
 

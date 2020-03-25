@@ -8,30 +8,34 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 100)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> userPosts;
+    private List<Post> posts;
 
     public User() {}
 
+        public User(User copy) {
+            id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+            email = copy.email;
+            username = copy.username;
+            password = copy.password;
+        }
 
-    public User(User user) {
-    }
 
     public long getId() {
         return this.id;
@@ -65,11 +69,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Post> getUserPosts() {
-        return this.userPosts;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setUserPosts(List<Post> userPosts) {
-        this.userPosts = userPosts;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

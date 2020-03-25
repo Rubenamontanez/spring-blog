@@ -9,14 +9,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-@Service("emailService")
+@Service("mailService")
 public class EmailService {
 
     @Autowired
     public JavaMailSender emailSender;
 
 
-    @Value("${spring.mail.from}")
+    @Value("spring.mail.from")
     private String from;
 
     public void prepareandsend(Post post,String subject, String body){

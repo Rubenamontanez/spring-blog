@@ -2,24 +2,23 @@ package com.codeup.springblog.Controllers;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
 public class MathController {
 
-    @GetMapping("/add/{a}/and/{b}")
+//    You can use the request map when yout not getting a string
+    @RequestMapping(path = "/add/{a}/and/{b}", method = RequestMethod.GET)
     @ResponseBody
-    public String add(@PathVariable int a, @PathVariable int b ){
-        return a + b + "!" ;
+    public Integer add(@PathVariable int a, @PathVariable int b ){
+        return a + b;
     }
 
     @GetMapping("/subtract/{a}/and/{b}")
     @ResponseBody
-    public String subtract(@PathVariable int a, @PathVariable int b ){
-        return a + b + "!" ;
+    public Integer subtract(@PathVariable int a, @PathVariable int b ){
+        return a + b;
     }
     @GetMapping("/multiply/{a}/and/{b}")
     @ResponseBody

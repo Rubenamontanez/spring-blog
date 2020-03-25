@@ -4,17 +4,19 @@ package com.codeup.springblog.Models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="posts")
+@Table(name = "posts")
 
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String title;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
     @ManyToOne
@@ -24,10 +26,11 @@ public class Post {
     public Post() {
     }
 
-    public Post(long id, String title, String body) {
+    public Post(long id, String title, String body,User user) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.user = user;
     }
 
 
