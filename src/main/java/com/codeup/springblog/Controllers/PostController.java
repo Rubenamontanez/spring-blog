@@ -46,7 +46,6 @@ public class PostController {
     @GetMapping("/posts/create")
     public String getCreatePostForm(){
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         if (loggedIn != null)
             return "posts/create";
         else
